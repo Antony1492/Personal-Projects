@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class ATM {
+    private static double accountBalance = 500.0; // Initial account balance
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Welcome to XYZ ATM:");
+            System.out.println("1. See Account Balance");
+            System.out.println("2. Deposit Money");
+            System.out.println("3. Withdraw Money");
+            System.out.println("4. Exit");
+            System.out.print("Please Choose an Option (1-4): ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    seeAccountBalance();
+                    break;
+                case 2:
+                    depositMoney(scanner);
+                    break;
+                case 3:
+                    withdrawMoney(scanner);
+                    break;
+                case 4:
+                    System.out.println("Thank you for using the XYZ ATM. Goodbye!");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid Option. Please Choose a Valid Option.");
+            }
+        }
+    }
+
+    private static void seeAccountBalance() {
+        System.out.println("Account Balance: $" + accountBalance);
+    }
+
+    private static void depositMoney(Scanner scanner) {
+        System.out.print("Enter the amount to deposit: $");
+        double depositAmount = scanner.nextDouble();
+
+        if (depositAmount > 0) {
+            accountBalance += depositAmount;
+            System.out.println("Deposit successful. New Account Balance: $" + accountBalance);
+        } else {
+            System.out.println("Invalid deposit amount. Please enter a positive amount.");
+        }
+    }
+
+    private static void withdrawMoney(Scanner scanner) {
+        System.out.print("Enter the amount to withdraw: $");
+        double withdrawAmount = scanner.nextDouble();
+
+        if (withdrawAmount > 0 && withdrawAmount <= accountBalance) {
+            accountBalance -= withdrawAmount;
+            System.out.println("Withdrawal successful. New Account Balance: $" + accountBalance);
+        } else if (withdrawAmount <= 0) {
+            System.out.println("Invalid withdrawal amount. Please enter a positive amount.");
+        } else {
+            System.out.println("Insufficient funds. Withdrawal not possible.");
+        }
+    }
+}
