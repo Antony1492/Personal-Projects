@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class reservation {
+
+    static int seast [] = new int [16];
+    static Scanner sc = new Scanner(System.in);
+
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to ANT Airlines");
+
+        while (true) {
+            System.out.println("Please select one of the following options: ");
+            System.out.println("1. Make a seat reservation");
+            System.out.println("2. View available seats");
+            System.out.println("3. Exit");
+            int select = sc.nextInt();
+
+            switch (select) {
+                case 1:
+                    reserveSeat();
+                    break;
+                case 2:
+                    viewSeats();
+                    break;
+                case 3:
+                    System.out.println("Thank you for using ANT Airlines, Have a great day");
+                    System.exit(0);
+            }
+        }
+    }
+
+    public static void viewSeats() {
+        System.out.println("Seats: ");
+        for (int i = 1; i<= 15; i++) {
+            System.out.println("Seat " + i + ": " + (seast[i] == 0 ? "Available" : "Reserved"));
+        }
+    }
+    public static void reserveSeat(){
+        System.out.println("Enter seat number to reserve: ");
+        int seat = sc.nextInt();
+        if (seast[seat] == 0){
+            seast[seat] = 1;
+            System.out.println("Seat " + seat + " Reserved Successfully");
+        } else {
+            System.out.println("Seat " + seat + " is already reserved");
+        }
+    }
+
+}
